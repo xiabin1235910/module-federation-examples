@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
-import App from "./components/App";
+import App from "./components/App.js";
 
 const render = (App) => {
   const root = document.getElementById("root");

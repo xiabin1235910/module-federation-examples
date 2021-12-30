@@ -1,3 +1,3 @@
-module.exports = {
-  extensions: [".js", ".mjs", ".jsx", ".css"],
+export default {
+  extensions: [".js", ".mjs", ".jsx", ".css", ".json"],
 };

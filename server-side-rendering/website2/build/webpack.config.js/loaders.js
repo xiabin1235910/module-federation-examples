@@ -1,5 +1,8 @@
-const ExtractCSSChunks = require("mini-css-extract-plugin");
-const path = require("path");
+// const ExtractCSSChunks = require("mini-css-extract-plugin");
+// const path = require("path");
+import path from 'path'
+
+const __dirname = path.resolve()
 
 const babelLoader = {
   test: /\.(js|jsx|mjs)$/,
@@ -36,24 +39,24 @@ const baseStyleLoader = (initialLoaders) => ({
   ],
 });
 
-const cssLoaderClient = baseStyleLoader([
-  {
-    loader: ExtractCSSChunks.loader,
-    options: {
-      hot: true,
-      reloadAll: true,
-    },
-  },
-  {
-    loader: "css-loader",
-    options: {
-      sourceMap: true,
-      localsConvention: "camelCase",
-      modules: true,
-      importLoaders: 2,
-    },
-  },
-]);
+// const cssLoaderClient = baseStyleLoader([
+//   {
+//     loader: ExtractCSSChunks.loader,
+//     options: {
+//       hot: true,
+//       reloadAll: true,
+//     },
+//   },
+//   {
+//     loader: "css-loader",
+//     options: {
+//       sourceMap: true,
+//       localsConvention: "camelCase",
+//       modules: true,
+//       importLoaders: 2,
+//     },
+//   },
+// ]);
 
 const cssLoaderServer = baseStyleLoader([
   {
@@ -111,11 +114,11 @@ const fileLoaderServer = {
 };
 
 // Write css files from node_modules to its own vendor.css file
-const externalCssLoaderClient = {
-  test: /\.css$/,
-  include: /node_modules/,
-  use: [ExtractCSSChunks.loader, "css-loader"],
-};
+// const externalCssLoaderClient = {
+//   test: /\.css$/,
+//   include: /node_modules/,
+//   use: [ExtractCSSChunks.loader, "css-loader"],
+// };
 
 // Server build needs a loader to handle external .css files
 const externalCssLoaderServer = {
@@ -137,10 +140,10 @@ const client = [
     oneOf: [
       mjsLoader,
       babelLoader,
-      cssLoaderClient,
+      // cssLoaderClient,
       urlLoaderClient,
       fileLoaderClient,
-      externalCssLoaderClient,
+      // externalCssLoaderClient,
     ],
   },
 ];
@@ -157,7 +160,7 @@ const server = [
   },
 ];
 
-module.exports = {
+export const loaders = {
   client,
   server,
 };

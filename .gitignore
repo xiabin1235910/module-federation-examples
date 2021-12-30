@@ -84,6 +84,7 @@ typings/
 dist
 buildClient
 buildServer
+buildServerNode
 
 # Gatsby files
 .cache/

@@ -1,9 +1,9 @@
-const fs = require("fs");
-const path = require("path");
-const dotenv = require("dotenv");
-const paths = require("./config");
+import fs from 'fs'
+import path from 'path'
+import dotenv from 'dotenv'
+import paths from './config.js'
 
-delete require.cache[require.resolve("./config")];
+// delete require.cache[require.resolve("./config")];
 
 if (!process.env.NODE_ENV) {
   throw new Error(
@@ -34,9 +34,9 @@ process.env.NODE_PATH = (process.env.NODE_PATH || "")
   .map((folder) => path.resolve(appDirectory, folder))
   .join(path.delimiter);
 
-module.exports = () => {
+export default () => {
   const raw = {
-    PORT: process.env.PORT || 3001,
+    PORT: process.env.PORT || 3002,
     NODE_ENV: process.env.NODE_ENV || "development",
   };
 

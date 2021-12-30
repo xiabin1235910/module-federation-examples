@@ -1,24 +1,10 @@
-const bodyParser = require("body-parser");
-const cookieParser = require("cookie-parser");
-const envMiddleware = require("./environmentMiddleware");
+import { envMiddleware } from './environmentMiddleware.js'
 
-module.exports = (express, app, done) => {
-  app.use(bodyParser.json());
-  app.use(bodyParser.urlencoded({ extended: false }));
+console.log(envMiddleware)
 
-  app.use(cookieParser());
+export default (express, app, done) => {
 
   // environment based middlewares
   envMiddleware(express, app, done);
-  app.use((req, res, next) => {
-    const cookie = req.cookies.jwToken;
-    const jwToken = "fake"; // TRY: set to 'real' to authenticate ADMIN route
 
-    if (cookie !== jwToken) {
-      res.cookie("jwToken", jwToken, { maxAge: 900000 });
-      req.cookies.jwToken = jwToken;
-    }
-
-    next();
-  });
 };

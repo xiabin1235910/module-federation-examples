@@ -1,8 +1,9 @@
-const express = require("express");
-const chalk = require("chalk");
-const initMiddleware = require("./middleware");
+import express from 'express'
+import chalk from 'chalk'
+import initMiddleware from './middleware/index.js'
 
-const { raw: env } = require("../build/env")();
+import buildEnv from '../build/env.js'
+const env = buildEnv().raw
 
 const app = express();
 
@@ -21,4 +22,4 @@ const done = () => {
 
 initMiddleware(express, app, done);
 
-module.exports = app;
+export default app;

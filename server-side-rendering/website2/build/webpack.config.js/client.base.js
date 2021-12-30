@@ -1,5 +1,5 @@
 const path = require("path");
-const {merge} = require("webpack-merge");
+const { merge } = require("webpack-merge");
 const ModuleFederationPlugin = require("webpack").container
   .ModuleFederationPlugin;
 const { client: clientLoaders } = require("./loaders");
@@ -13,10 +13,14 @@ module.exports = merge(common, {
   target: "web",
   entry: ["@babel/polyfill", path.resolve(__dirname, "../../src/index.js")],
   output: {
-    publicPath: "http://localhost:3002/static/",
+    publicPath: "http://localhost:3002/buildClient/static/",
+    clean: true
   },
   module: {
     rules: clientLoaders,
+  },
+  optimization: {
+    minimize: false,
   },
   plugins: [
     ...plugins.client,

@@ -21,11 +21,13 @@ const { NodeModuleFederation } = require("@telenko/node-mf");
 module.exports = merge(common, {
   name: "server",
   target: "async-node",
+  // target: false,
   entry: ["@babel/polyfill", path.resolve(__dirname, "../../server/index.js")],
   output: {
     path: serverPath,
     filename: "[name].js",
     libraryTarget: "commonjs2",
+    publicPath: "http://localhost:3001/server/"
   },
   externals: ["enhanced-resolve"],
   module: {
@@ -37,14 +39,14 @@ module.exports = merge(common, {
   plugins: [
     ...plugins.server,
     new webpack.HotModuleReplacementPlugin(),
-    new ModuleFederationPlugin({
-      // new NodeModuleFederation({
+    // new ModuleFederationPlugin({
+    new NodeModuleFederation({
       name: "website1",
       library: { type: "commonjs2" },
       filename: "container.js",
       remotes: {
-        website2: remotePath
-        // website2: "website2@http://localhost:3002/server/container.js"
+        // website2: remotePath
+        website2: "website2@http://localhost:3002/server/container.js"
         // website2: {
         //   // we dont need to do this, just intersting to see in action
         //   external: `promise new Promise((resolve)=>{ console.log('requring remote');delete require.cache['${remotePath}']; resolve(require('${remotePath}')) })`

@@ -1,7 +1,8 @@
-const path = require("path");
-const fs = require("fs");
-const dotenv = require("dotenv");
+import path from 'path'
+import fs from 'fs'
+import dotenv from 'dotenv'
 
+const __dirname = path.resolve();
 const dotenvFile = path.resolve(__dirname, "../.env");
 if (fs.existsSync(dotenvFile)) {
   dotenv.config({
@@ -9,7 +10,7 @@ if (fs.existsSync(dotenvFile)) {
   });
 }
 
-module.exports = {
+export default {
   dotenv: path.resolve(__dirname, "../.env"),
   development: {
     clientPath: path.resolve(__dirname, "../buildClient"),

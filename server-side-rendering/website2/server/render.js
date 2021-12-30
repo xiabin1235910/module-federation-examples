@@ -1,9 +1,9 @@
 import React from "react";
-import { renderToString } from "react-dom/server";
+import { renderToString } from "react-dom/server.js";
 import { Helmet } from "react-helmet";
 import { ChunkExtractor } from "@loadable/server";
 import path from "path";
-import App from "../src/components/App";
+import App from "../src/components/App.js";
 
 const statsFile = path.resolve("./buildClient/static/stats.json");
 
@@ -23,7 +23,7 @@ export default async (req, res, next) => {
     const styleTags = extractor.getStyleTags(); // or extractor.getStyleElements();
     const helmet = Helmet.renderStatic();
 
-    return res.send(`<!doctype html>
+    return res.send(`<!DOCTYPE html>
      <html ${helmet.htmlAttributes.toString()}>
         <head>
             ${helmet.title.toString()}
