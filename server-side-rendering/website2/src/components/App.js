@@ -1,8 +1,16 @@
 import React from "react";
 import Header from "./SomeComponent.js";
 
-export default () => (
+export default (props) => (
   <div>
-    <Header />
+    <Header {...props} />
   </div>
 );
+
+export async function getServerSideProps() {
+  return {
+    props: {
+      name: 'header --- website2222'
+    }
+  }
+}

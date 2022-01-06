@@ -1,6 +1,6 @@
 import React from "react";
 
-const SomeComponent = () => (
+const SomeComponent = ({ name }) => (
   <div
     style={{
       padding: "1em",
@@ -10,7 +10,7 @@ const SomeComponent = () => (
     }}
     onClick={() => alert("website2 is interactive")}
   >
-    Header from website2. You can change this and reload localhost:3001 - the
+    Header of {name} from website2. You can change this and reload localhost:3001 - the
     changes take new on SSR and client side
   </div>
 );
