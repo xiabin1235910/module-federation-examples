@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
-import { getServerSideProps, default as App } from "./components/App.js";
+import { default as App } from "./components/App.js";
 
 // const render = async (App) => {
 //   // const serverData = await getServerSideProps();
