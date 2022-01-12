@@ -43,6 +43,7 @@ export default {
       filename: "container.js",
       exposes: {
         "./SomeComponent": "./src/components/SomeComponent",
+        // "./App": "./src/components/App"
       },
       remotes: {
         website1: "website1@http://localhost:3001/static/container.js",
