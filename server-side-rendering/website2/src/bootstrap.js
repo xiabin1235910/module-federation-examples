@@ -3,24 +3,6 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { default as App } from "./components/App.js";
 
-// const render = async (App) => {
-//   // const serverData = await getServerSideProps();
-
-//   const root = document.getElementById("root");
-
-//   console.log(name)
-
-//   ReactDOM.hydrate(
-//     <AppContainer>
-//       {/* <App {...serverData.props} /> */}
-//       <App name={name} />
-//     </AppContainer>,
-//     root
-//   );
-// };
-
-// render(App);
-
 import { loadableReady } from '@loadable/component'
 
 loadableReady(() => {
