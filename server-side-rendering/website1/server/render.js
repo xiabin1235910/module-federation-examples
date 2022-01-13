@@ -5,7 +5,13 @@ import { ChunkExtractor } from "@loadable/server";
 import path from "path";
 import App from "../src/components/App";
 import { getMfChunks, createScriptTag, createStyleTag } from "./mfFunctions";
+
+import { StaticRouter } from "react-router-dom/server";
+// Very important!!!
+// we must hard code the import here to let `website2/SomeComponent` explictly cached into webpack so that it can be used by 
+// `loadable-component` with dynamically import.
 import SomeComponent from "website2/SomeComponent";
+
 const statsFile = path.resolve("./buildClient/static/stats.json");
 
 export default async (req, res, next) => {
@@ -14,7 +20,7 @@ export default async (req, res, next) => {
     // We create an extractor from the statsFile
     const extractor = new ChunkExtractor({ statsFile });
     // Wrap your application using "collectChunks"
-    const jsx = extractor.collectChunks(createApp(App));
+    const jsx = extractor.collectChunks(createApp(App, req));
 
     // Render your application
     const html = renderToString(jsx);
@@ -57,4 +63,10 @@ export default async (req, res, next) => {
   }
 };
 
-const createApp = (App) => <App />;
+// const createApp = (App) => <App />
+
+const createApp = (App, req) => {
+  return <StaticRouter location={req.url}>
+    <App />
+  </StaticRouter>
+};

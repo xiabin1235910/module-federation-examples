@@ -60,6 +60,7 @@ export default {
       filename: "container.js",
       exposes: {
         "./SomeComponent": "./src/components/SomeComponent",
+        "./App": "./src/components/App"
       },
       shared: {
         react: {
