@@ -3,7 +3,7 @@ import { renderToString } from "react-dom/server.js";
 import { Helmet } from "react-helmet";
 import { ChunkExtractor } from "@loadable/server";
 import path from "path";
-import { default as App, getServerSideProps } from "../src/components/App.js";
+import { default as App } from "../src/components/App.js";
 
 const statsFile = path.resolve("./buildClient/static/stats.json");
 
@@ -12,8 +12,8 @@ export default async (req, res, next) => {
     const extractor = new ChunkExtractor({ statsFile });
     // Wrap your application using "collectChunks"
 
-    const serverData = await getServerSideProps();
-
+    const serverData = await App.getInitialProps() || {};
+    serverData.props.ssr = true;
 
     const jsx = extractor.collectChunks(createApp(App, serverData));
 
