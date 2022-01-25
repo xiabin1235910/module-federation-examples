@@ -5,27 +5,40 @@ const ModuleFederationPlugin = require("webpack").container
 const { client: clientLoaders } = require("./loaders");
 const plugins = require("./plugins");
 const common = require("./common.base");
-const deps = require('../../package.json').dependencies
+const FederationModuleIdPlugin = require("webpack-federation-module-id-plugin");
+const FederationStatsPlugin = require("webpack-federation-stats-plugin");
+
+const port = process.env.PORT;
+
 module.exports = merge(common, {
   name: "client",
   target: "web",
   entry: ["@babel/polyfill", path.resolve(__dirname, "../../src/index.js")],
   output: {
-    publicPath: "http://localhost:3001/static/",
+    publicPath: `http://localhost:${port}/buildClient/static/`,
+    clean: true
   },
   module: {
     rules: clientLoaders,
   },
+  optimization: {
+    minimize: false,
+  },
   plugins: [
     ...plugins.client,
+    new FederationStatsPlugin(),
+    new FederationModuleIdPlugin(),
     new ModuleFederationPlugin({
-      name: "website1",
+      name: "storybook",
+      library: { type: "var", name: "storybook" },
       filename: "container.js",
-      remotes: {
-        website2: "website2@http://localhost:3002/static/container.js",
-        storybook: "storybook@http://localhost:3003/static/container.js"
+      exposes: {
+        "./Button": "./src/components/Button",
       },
-      shared: [{ "react": deps.react, "react-dom": deps["react-dom"] }],
+      remotes: {
+        website1: "website1@http://localhost:3001/static/container.js",
+      },
+      shared: ["react", "react-dom"],
     }),
   ],
 });

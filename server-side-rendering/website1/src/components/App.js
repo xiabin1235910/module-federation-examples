@@ -5,6 +5,7 @@ import { Routes, Route, Link } from "react-router-dom";
 // eslint-disable-next-line
 const SomeComponent = loadable(() => import("website2/SomeComponent"));
 const Website2App = loadable(() => import("website2/App"), { ssr: false });
+const Button = loadable(() => import("storybook/Button"));
 
 export default () => (
   <div>
@@ -23,6 +24,7 @@ function Home() {
       <main>
         <h1 onClick={() => alert("website1 is interactive")}>This is website 1</h1>
         <SomeComponent name='header from website1' />
+        <Button name="Hi Bin" />
       </main>
       <nav>
         <Link to="/website2">website2</Link>
