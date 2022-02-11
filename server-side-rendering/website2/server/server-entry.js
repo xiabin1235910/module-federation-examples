@@ -1,5 +1,6 @@
+import render from "./render.js"
+
 export default () =>
-  async (req, res, next) => {
-    const renderer = (await import("./render.js")).default;
-    return renderer(req, res, next);
+  (req, res, next) => {
+    return render(req, res, next);
   };

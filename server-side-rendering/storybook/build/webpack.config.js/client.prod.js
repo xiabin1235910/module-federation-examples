@@ -1,32 +1,33 @@
-import path from 'path'
-import { loaders } from './loaders.js'
-import plugins from './plugins.js';
-import resolvers from './resolvers.js';
-import webpack from 'webpack';
+const { loaders } = require('./loaders')
 
-import FederationModuleIdPlugin from 'webpack-federation-module-id-plugin';
-import FederationStatsPlugin from 'webpack-federation-stats-plugin';
+const webpack = require('webpack')
+const path = require('path')
+
+const LoadablePlugin = require("@loadable/webpack-plugin");
+const FederationModuleIdPlugin = require('webpack-federation-module-id-plugin')
+const FederationStatsPlugin = require('webpack-federation-stats-plugin')
+
 
 const deps = '^16.8.6'
 
 const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
 
-const __dirname = path.resolve()
-
-export default {
+module.exports = {
   name: "client",
   target: "web",
-  entry: ["@babel/polyfill", path.resolve(__dirname, "./src/index.js")],
+  entry: ["@babel/polyfill", path.resolve(__dirname, "../../src/index.js")],
   mode: "production",
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, "./buildClient/static"),
+    path: path.resolve(__dirname, "../../buildClient/static"),
     filename: "[name].[chunkhash].js",
     chunkFilename: "[name].[chunkhash].js",
     publicPath: `http://localhost:${process.env.PORT}/static/`,
     clean: true
   },
-  resolve: { ...resolvers },
+  resolve: {
+    extensions: [".js", ".mjs", ".jsx", ".css", ".json", ".cjs"],
+  },
   module: {
     rules: loaders.client,
   },
@@ -34,7 +35,7 @@ export default {
     minimize: false,
   },
   plugins: [
-    ...plugins.client,
+    new LoadablePlugin({ filename: "stats.json", writeToDisk: true }),
     new FederationStatsPlugin(),
     new FederationModuleIdPlugin(),
     new ModuleFederationPlugin({
@@ -49,13 +50,9 @@ export default {
       },
       shared: {
         react: {
-          singleton: true,
-          eager: true,
           requiredVersion: deps,
         },
         ["react-dom"]: {
-          singleton: true,
-          eager: true,
           requiredVersion: deps,
         },
       },

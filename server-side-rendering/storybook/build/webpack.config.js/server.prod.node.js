@@ -1,32 +1,36 @@
-import webpack from 'webpack'
-import path from 'path'
-import { loaders } from './loaders.js'
-import plugins from './plugins.js';
-import resolvers from './resolvers.js';
+const webpack = require('webpack')
+const path = require('path')
 
-const __dirname = path.resolve()
-
-export default {
+module.exports = {
   name: "server",
   target: "async-node",
   mode: "production",
-  entry: ["@babel/polyfill", path.resolve(__dirname, "./server/index.js")],
+  entry: ["@babel/polyfill", path.resolve(__dirname, "../../server/index.js")],
   output: {
-    path: path.resolve(__dirname, "./buildServerNode"),
-    filename: "[name].cjs",
+    path: path.resolve(__dirname, "../../buildServerNode"),
+    filename: "[name].js",
     libraryTarget: "commonjs2",
     clean: true
   },
-  resolve: { ...resolvers },
+  resolve: {
+    extensions: [".js", ".mjs", ".jsx", ".css", ".json", ".cjs"],
+  },
   externals: ["enhanced-resolve"],
   module: {
-    rules: loaders.server,
+    rules: [
+      {
+        test: /\.?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader"
+        }
+      },
+    ],
   },
   optimization: {
     minimize: false,
   },
   plugins: [
-    ...plugins.server,
     new webpack.HotModuleReplacementPlugin(),
   ],
   stats: {

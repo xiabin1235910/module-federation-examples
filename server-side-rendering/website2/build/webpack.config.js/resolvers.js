@@ -1,3 +1,3 @@
 export default {
-  extensions: [".js", ".mjs", ".jsx", ".css", ".json"],
+  extensions: [".js", ".mjs", ".jsx", ".css", ".json", ".cjs"],
 };

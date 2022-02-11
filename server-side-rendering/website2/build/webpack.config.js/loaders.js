@@ -1,11 +1,10 @@
 // const ExtractCSSChunks = require("mini-css-extract-plugin");
 // const path = require("path");
-import path from 'path'
-
-const __dirname = path.resolve()
+// import path from 'path'
+const path = require('path')
 
 const babelLoader = {
-  test: /\.(js|jsx|mjs)$/,
+  test: /\.(js|jsx|mjs|cjs)$/,
   exclude: /node_modules/,
   use: [
     {
@@ -160,7 +159,10 @@ const server = [
   },
 ];
 
-export const loaders = {
-  client,
-  server,
+module.exports = {
+  loaders: {
+    client,
+    server,
+  }
+
 };

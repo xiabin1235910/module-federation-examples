@@ -4,6 +4,9 @@ import { Helmet } from "react-helmet";
 import { ChunkExtractor } from "@loadable/server";
 import path from "path";
 import { default as App } from "../src/components/App.js";
+import { getMfChunks, createScriptTag, createStyleTag } from "./mfFunctions.js";
+
+// import Button from "storybook/Button";
 
 const statsFile = path.resolve("./buildClient/static/stats.json");
 
@@ -27,6 +30,8 @@ export default async (req, res, next) => {
     const styleTags = extractor.getStyleTags(); // or extractor.getStyleElements();
     const helmet = Helmet.renderStatic();
 
+    const [mfRequiredScripts, mfRequiredStyles] = await getMfChunks(extractor);
+
     return res.send(`<!DOCTYPE html>
      <html ${helmet.htmlAttributes.toString()}>
         <head>
@@ -35,11 +40,13 @@ export default async (req, res, next) => {
             ${helmet.link.toString()}
           
             <link rel="shortcut icon" href="data:;base64,=">
+            ${mfRequiredStyles.map(createStyleTag).join("")}
             ${styleTags}
         </head>
        
         <body ${helmet.bodyAttributes.toString()}>
           <div id="root">${html}</div>
+          ${mfRequiredScripts.map(createScriptTag).join("")}
           ${scriptTags}
         </body>
 

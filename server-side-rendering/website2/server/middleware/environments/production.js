@@ -1,9 +1,7 @@
 import path from 'path'
-import config from '../../../build/config.js'
 import fetch from 'node-fetch'
 
-const { serverPath, clientPath, publicPath } =
-  config[process.env.NODE_ENV || "production"];
+import serverEntry from "../../server-entry.js"
 
 const __dirname = path.resolve();
 
@@ -21,17 +19,21 @@ export default async (express, app, done) => {
     "/server",
     express.static(path.join(__dirname, "./buildServer"))
   );
+  app.use(
+    "/server_node",
+    express.static(path.join(__dirname, "./buildServerNode"))
+  );
   try {
     fetch("http://localhost:3001/restart");
   } catch (e) {
     console.error(e);
   }
 
-  const rederThunk = await import("../../server-entry.js"); // eslint-disable-line import/no-unresolved
+  // const rederThunk = await import("../../server-entry.js"); // eslint-disable-line import/no-unresolved
   try {
     // static path where files such as images will be served from
-    const serverRemder = rederThunk.default();
-    app.get("/*", serverRemder);
+    // const serverRemder = rederThunk.default();
+    app.get("/*", serverEntry());
   } catch (e) {
     throw new Error("Cant find webpack client stats file");
   }
