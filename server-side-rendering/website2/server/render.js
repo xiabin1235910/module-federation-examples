@@ -6,7 +6,7 @@ import path from "path";
 import { default as App } from "../src/components/App.js";
 import { getMfChunks, createScriptTag, createStyleTag } from "./mfFunctions.js";
 
-// import Button from "storybook/Button";
+import Button from "storybook/Button";
 
 const statsFile = path.resolve("./buildClient/static/stats.json");
 

@@ -6,17 +6,22 @@ const deps = '^16.8.6'
 
 const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
 
+const remotePath = path.resolve(
+  __dirname,
+  "../../../storybook/buildServer/container.js"
+)
+
 module.exports = {
   name: "server",
   mode: "production",
   target: false,
   entry: ["@babel/polyfill", path.resolve(__dirname, "../../server/index.js")],
   output: {
-    path: path.resolve(__dirname, "../../buildServer"),
+    path: path.resolve(__dirname, "../../buildServerDown"),
     filename: "[name].js",
     chunkFilename: "[name].chunk.js",
     libraryTarget: "commonjs2",
-    publicPath: "http://localhost:3002/server/",
+    publicPath: "http://localhost:3002/server_downstream/",
     clean: true
   },
   resolve: {
@@ -42,15 +47,14 @@ module.exports = {
     new ModuleFederationPlugin({
       name: "website2",
       library: { type: "var", name: "website2" },
-      // library: { type: "commonjs2" },
       filename: "container.js",
       exposes: {
-        "./SomeComponent": "./src/components/SomeComponent",
-        "./App": "./src/components/App"
+        "./App": "./src/components/App",
       },
-      // remotes: {
-      //   storybook: "storybook@http://localhost:3003/static/container.js",
-      // },
+      remotes: {
+        // no meaningful config here, but it's the mock for upstream calling
+        storybook: "storybook"
+      },
       shared: {
         react: {
           requiredVersion: deps,

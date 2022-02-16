@@ -2,19 +2,22 @@ const path = require("path");
 const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 // const fs = require("fs");
-// const ModuleFederationPlugin = require("webpack").container
-//   .ModuleFederationPlugin;
+const ModuleFederationPlugin = require("webpack").container
+  .ModuleFederationPlugin;
 const common = require("./common.base");
 const { server: serverLoaders } = require("./loaders");
 const plugins = require("./plugins");
 const config = require("../config");
 
 const { serverPath } = config[process.env.NODE_ENV || "development"];
-// const remotePath = path.resolve(
-//   __dirname,
-//   "../../../website2/buildServer/container.js"
-// )
+
 const deps = require('../../package.json').dependencies
+
+const remotePath = path.resolve(
+  __dirname,
+  "../../../storybook/buildServer/container.js"
+)
+
 
 const { NodeModuleFederation } = require("@telenko/node-mf");
 
@@ -45,7 +48,7 @@ module.exports = merge(common, {
       filename: "container.js",
       remotes: {
         // website2: remotePath
-        website2: "website2@http://localhost:3002/server/container.js",
+        website2: "website2@http://localhost:3002/server_downstream/container.js",
         storybook: "storybook@http://localhost:3003/server/container.js"
         // website2: {
         //   // we dont need to do this, just intersting to see in action

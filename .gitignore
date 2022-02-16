@@ -113,3 +113,6 @@ buildServerNode
 
 # angular cache
 .angular
+
+buildServerUp
+buildServerDown

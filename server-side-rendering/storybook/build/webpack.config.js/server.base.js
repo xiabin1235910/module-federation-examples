@@ -25,7 +25,7 @@ module.exports = merge(common, {
     path: serverPath,
     filename: "[name].js",
     libraryTarget: "commonjs2",
-    publicPath: "http://localhost:3002/server/",
+    publicPath: "http://localhost:3003/server/",
     clean: true
   },
   externals: ["enhanced-resolve"],
@@ -39,12 +39,12 @@ module.exports = merge(common, {
     ...plugins.server,
     new webpack.HotModuleReplacementPlugin(),
     new ModuleFederationPlugin({
-      name: "website2",
-      library: { type: "var", name: "website2" },
+      name: "storybook",
+      library: { type: "var", name: "storybook" },
       // library: { type: "commonjs2" },
       filename: "container.js",
       exposes: {
-        "./SomeComponent": "./src/components/SomeComponent",
+        "./Button": "./src/components/Button",
       },
       shared: [{ "react": deps.react, "react-dom": deps["react-dom"] }],
     }),

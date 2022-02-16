@@ -35,9 +35,6 @@ module.exports = merge(common, {
       exposes: {
         "./Button": "./src/components/Button",
       },
-      remotes: {
-        website1: "website1@http://localhost:3001/static/container.js",
-      },
       shared: ["react", "react-dom"],
     }),
   ],

@@ -1,7 +1,7 @@
 import React from "react";
 import loadable from "@loadable/component";
 
-// const Button = loadable(() => import("storybook/Button"), { ssr: true });
+const Button = loadable(() => import("storybook/Button"), { ssr: true });
 
 const SomeComponent = ({ name }) => (
   <>
@@ -22,7 +22,7 @@ const SomeComponent = ({ name }) => (
       width: "100px",
       height: "150px",
     }}>
-      {/* <Button name="hello world" /> */}
+      <Button name="hello world" />
     </div>
 
   </>
