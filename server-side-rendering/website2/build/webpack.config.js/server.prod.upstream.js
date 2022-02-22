@@ -4,13 +4,6 @@ const path = require('path')
 
 const deps = '^16.8.6'
 
-const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
-
-const remotePath = path.resolve(
-  __dirname,
-  "../../../storybook/buildServer/container.js"
-)
-
 module.exports = {
   name: "server",
   mode: "production",

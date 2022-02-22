@@ -51,6 +51,11 @@ module.exports = {
       },
       shared: ["react", "react-dom"],
     }),
-
+    new webpack.NormalModuleReplacementPlugin(
+      /node-fetch/,
+      "../../build/fetch"),
+    new webpack.NormalModuleReplacementPlugin(
+      /common\/server/,
+      "../../build/common/client.prod")
   ],
 }

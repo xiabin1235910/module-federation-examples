@@ -1,14 +1,12 @@
-// __webpack_public_path__ = 'http://localhost:3002/server_node/'
+// this file must be put in the first line, since dotenv config will initialize
+import buildEnv from '../build/env.js'
 
 import express from 'express'
 import chalk from 'chalk'
 import initMiddleware from './middleware/index.js'
 
-import buildEnv from '../build/env.js'
-const env = buildEnv().raw
-
 const app = express();
-
+const env = buildEnv().raw
 /**
  * All application expressjs middleware
  */

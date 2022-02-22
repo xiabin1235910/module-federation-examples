@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./SomeComponent.js";
+import fetch from "node-fetch";
+import config from "../../build/common/server";
 
 const BROWSER = typeof window !== 'undefined'
 
@@ -46,7 +48,13 @@ export default function App(props) {
 };
 
 App.getInitialProps = async () => {
-  await new Promise((resolve, reject) => setTimeout(resolve, 1000))
+  const response = await fetch(`${config.BFF_ENTRYPOINT}/ad/1009264909240912081200209`, {
+    headers: {
+      'bff-site-locale': 'en_ZA'
+    }
+  })
+  const adData = await response.json();
+  console.log(adData)
   const result = await {
     name: 'website2 generated data which can be also used for SSR'
   }
