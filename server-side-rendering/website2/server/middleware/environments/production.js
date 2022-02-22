@@ -16,10 +16,6 @@ export default async (express, app, done) => {
     express.static(path.join(__dirname, "./buildClient/static"))
   );
   app.use(
-    "/server",
-    express.static(path.join(__dirname, "./buildServer"))
-  );
-  app.use(
     "/server_downstream",
     express.static(path.join(__dirname, "./buildServerDown"))
   );

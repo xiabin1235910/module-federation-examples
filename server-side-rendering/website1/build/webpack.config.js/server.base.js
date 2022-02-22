@@ -49,7 +49,7 @@ module.exports = merge(common, {
       remotes: {
         // website2: remotePath
         website2: "website2@http://localhost:3002/server_downstream/container.js",
-        storybook: "storybook@http://localhost:3003/server/container.js"
+        storybook: "storybook@http://localhost:3003/server_downstream/container.js"
         // website2: {
         //   // we dont need to do this, just intersting to see in action
         //   external: `promise new Promise((resolve)=>{ console.log('requring remote');delete require.cache['${remotePath}']; resolve(require('${remotePath}')) })`

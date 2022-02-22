@@ -40,22 +40,11 @@ module.exports = {
     new FederationModuleIdPlugin(),
     new ModuleFederationPlugin({
       name: "storybook",
-      library: { type: "var", name: "storybook" },
       filename: "container.js",
       exposes: {
         "./Button": "./src/components/Button",
       },
-      remotes: {
-        website1: "website1@http://localhost:3001/static/container.js",
-      },
-      shared: {
-        react: {
-          requiredVersion: deps,
-        },
-        ["react-dom"]: {
-          requiredVersion: deps,
-        },
-      },
+      shared: ["react", "react-dom"],
     }),
   ],
 }

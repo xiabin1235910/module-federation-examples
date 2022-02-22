@@ -1,20 +1,20 @@
-const { NodeModuleFederation } = require('@telenko/node-mf')
+const { NodeAsyncHttpRuntime } = require('@telenko/node-mf')
 const webpack = require('webpack')
 const path = require('path')
 
-const deps = '^16.8.6'
+const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
 
 module.exports = {
   name: "server",
   mode: "production",
-  target: "async-node",
+  target: false,
   entry: ["@babel/polyfill", path.resolve(__dirname, "../../server/index.js")],
   output: {
-    path: path.resolve(__dirname, "../../buildServerUp"),
+    path: path.resolve(__dirname, "../../buildServerDown"),
     filename: "[name].js",
     chunkFilename: "[name].chunk.js",
     libraryTarget: "commonjs2",
-    publicPath: "http://localhost:3002/server_uptream/",
+    publicPath: "http://localhost:3003/server_downstream/",
     clean: true
   },
   resolve: {
@@ -37,21 +37,16 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new NodeModuleFederation({
-      name: "website2",
+    new ModuleFederationPlugin({
+      name: "storybook",
+      library: { type: "var", name: "storybook" },
       filename: "container.js",
-      remotes: {
-        storybook: "storybook@http://localhost:3003/server_downstream/container.js",
+      exposes: {
+        "./Button": "./src/components/Button.js",
       },
-      shared: {
-        react: {
-          requiredVersion: deps,
-        },
-        ["react-dom"]: {
-          requiredVersion: deps,
-        },
-      },
+      shared: ['react', 'react-dom']
     }),
+    new NodeAsyncHttpRuntime(),
   ],
   stats: {
     colors: true,

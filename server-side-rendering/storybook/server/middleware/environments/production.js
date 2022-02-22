@@ -18,8 +18,12 @@ export default async (express, app, done) => {
     express.static(path.join(__dirname, "./buildClient/static"))
   );
   app.use(
-    "/server",
-    express.static(path.join(__dirname, "./buildServer"))
+    "/server_downstream",
+    express.static(path.join(__dirname, "./buildServerDown"))
+  );
+  app.use(
+    "/server_upstream",
+    express.static(path.join(__dirname, "./buildServerUp"))
   );
   try {
     fetch("http://localhost:3001/restart");

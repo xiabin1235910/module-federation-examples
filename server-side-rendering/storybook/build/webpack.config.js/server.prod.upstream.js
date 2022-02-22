@@ -14,7 +14,7 @@ module.exports = {
     filename: "[name].js",
     chunkFilename: "[name].chunk.js",
     libraryTarget: "commonjs2",
-    publicPath: "http://localhost:3002/server_uptream/",
+    publicPath: "http://localhost:3003/server_uptream/",
     clean: true
   },
   resolve: {
@@ -37,21 +37,6 @@ module.exports = {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new NodeModuleFederation({
-      name: "website2",
-      filename: "container.js",
-      remotes: {
-        storybook: "storybook@http://localhost:3003/server_downstream/container.js",
-      },
-      shared: {
-        react: {
-          requiredVersion: deps,
-        },
-        ["react-dom"]: {
-          requiredVersion: deps,
-        },
-      },
-    }),
   ],
   stats: {
     colors: true,
