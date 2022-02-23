@@ -1,17 +1,60 @@
-const {merge} = require("webpack-merge");
-const path = require("path");
-const baseConfig = require("./client.base");
-const env = require("../env")();
-const config = require("../config");
+const { loaders } = require('./loaders')
 
-const { publicPath, clientPath } = config[env.raw.NODE_ENV || "production"];
+const webpack = require('webpack')
+const path = require('path')
 
-module.exports = merge(baseConfig, {
+const LoadablePlugin = require("@loadable/webpack-plugin");
+const FederationModuleIdPlugin = require('webpack-federation-module-id-plugin')
+const FederationStatsPlugin = require('webpack-federation-stats-plugin')
+
+const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
+
+module.exports = {
+  name: "client",
+  target: "web",
+  entry: ["@babel/polyfill", path.resolve(__dirname, "../../src/index.js")],
   mode: "production",
   devtool: "source-map",
   output: {
-    path: path.join(clientPath, publicPath),
+    path: path.resolve(__dirname, "../../buildClient/static"),
     filename: "[name].[chunkhash].js",
     chunkFilename: "[name].[chunkhash].js",
+    publicPath: "http://localhost:3001/static/",
+    clean: true
   },
-});
+  resolve: {
+    extensions: [".js", ".mjs", ".jsx", ".css", ".json", ".cjs"],
+  },
+  module: {
+    rules: loaders.client,
+  },
+  optimization: {
+    minimize: false,
+  },
+  plugins: [
+    new LoadablePlugin({ filename: "stats.json", writeToDisk: true }),
+    new FederationStatsPlugin(),
+    new FederationModuleIdPlugin(),
+    new ModuleFederationPlugin({
+      // no library defined here since this container will be treat as `script` in webpack ExternalModule.js
+      name: "website1",
+      filename: "container.js",
+      exposes: {
+        "./App": "./src/components/App"
+      },
+      remotes: {
+        // website2 is the server downstream that is only for csr, in order to compile without error, fetch the website2 script from the 
+        // server_downstream directory
+        website2: "website2@http://localhost:3002/static/container.js",
+        storybook: "storybook@http://localhost:3003/static/container.js",
+      },
+      shared: ["react", "react-dom"],
+    }),
+    new webpack.NormalModuleReplacementPlugin(
+      /node-fetch/,
+      "../../build/fetch"),
+    new webpack.NormalModuleReplacementPlugin(
+      /common\/server/,
+      "../../build/common/client.prod")
+  ],
+}

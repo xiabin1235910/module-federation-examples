@@ -10,6 +10,7 @@ import { StaticRouter } from "react-router-dom/server";
 // Very important!!!
 // we must hard code the import here to let `website2/SomeComponent` explictly cached into webpack so that it can be used by 
 // `loadable-component` with dynamically import when ssr.
+import Website2 from "website2/App";
 import Button from "storybook/Button";
 
 const statsFile = path.resolve("./buildClient/static/stats.json");

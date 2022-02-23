@@ -1,11 +1,6 @@
+const { NodeModuleFederation, NodeAsyncHttpRuntime } = require('@telenko/node-mf')
 const webpack = require('webpack')
 const path = require('path')
-
-const { NodeAsyncHttpRuntime } = require('@telenko/node-mf')
-
-// import * as package1 from '../../package.json'
-// const deps = package1.dependencies
-const deps = '^16.8.6'
 
 const ModuleFederationPlugin = webpack.container.ModuleFederationPlugin;
 
@@ -15,10 +10,11 @@ module.exports = {
   target: false,
   entry: ["@babel/polyfill", path.resolve(__dirname, "../../server/index.js")],
   output: {
-    path: path.resolve(__dirname, "../../buildServer"),
+    path: path.resolve(__dirname, "../../buildServerDown"),
     filename: "[name].js",
+    chunkFilename: "[name].chunk.js",
     libraryTarget: "commonjs2",
-    publicPath: `http://localhost:${process.env.PORT}/server/`,
+    publicPath: "http://localhost:3001/server_downstream/",
     clean: true
   },
   resolve: {
@@ -42,23 +38,18 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new ModuleFederationPlugin({
-      name: "storybook",
-      library: { type: "var", name: "storybook" },
-      // library: { type: "commonjs2" },
+      name: "website1",
+      library: { type: "var", name: "website1" },
       filename: "container.js",
       exposes: {
-        "./Button": "./src/components/Button.js",
+        "./App": "./src/components/App",
       },
-      shared: {
-        react: {
-          singleton: true,
-          requiredVersion: deps,
-        },
-        ["react-dom"]: {
-          singleton: true,
-          requiredVersion: deps,
-        },
+      remotes: {
+        // no meaningful config here, but it's the mock for upstream calling
+        storybook: "storybook",
+        website2: "website2",
       },
+      shared: ["react", "react-dom"]
     }),
     new NodeAsyncHttpRuntime(),
   ],
