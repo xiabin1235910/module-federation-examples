@@ -8,12 +8,20 @@ const { serverPath, clientPath, publicPath } =
 // Production specific middleware for express
 module.exports = async (express, app, done) => {
   app.use(
-    "/static",
+    "/static_downstream",
     (req, res, next) => {
       res.set('Access-Control-Allow-Origin', '*');
       next();
     },
-    express.static(path.join(__dirname, "../buildClient/static"))
+    express.static(path.join(__dirname, "../buildClientDown/static"))
+  );
+  app.use(
+    "/static_upstream",
+    (req, res, next) => {
+      res.set('Access-Control-Allow-Origin', '*');
+      next();
+    },
+    express.static(path.join(__dirname, "../buildClientUp/static"))
   );
   app.use(
     "/server_downstream",

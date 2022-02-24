@@ -8,12 +8,11 @@ import { getMfChunks, createScriptTag, createStyleTag } from "./mfFunctions";
 
 import { StaticRouter } from "react-router-dom/server";
 // Very important!!!
-// we must hard code the import here to let `website2/SomeComponent` explictly cached into webpack so that it can be used by 
+// we must hard code the import here to let `storybook/Button` explictly cached into webpack so that it can be used by 
 // `loadable-component` with dynamically import when ssr.
-import Website2 from "website2/App";
 import Button from "storybook/Button";
 
-const statsFile = path.resolve("./buildClient/static/stats.json");
+const statsFile = path.resolve("./buildClientUp/static/stats.json");
 
 export default async (req, res, next) => {
   try {

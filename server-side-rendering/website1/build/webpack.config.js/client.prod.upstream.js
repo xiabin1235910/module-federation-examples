@@ -16,11 +16,11 @@ module.exports = {
   mode: "production",
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, "../../buildClient/static"),
+    path: path.resolve(__dirname, "../../buildClientUp/static"),
     filename: "[name].[chunkhash].js",
     chunkFilename: "[name].[chunkhash].js",
-    publicPath: "http://localhost:3001/static/",
-    clean: true
+    publicPath: "http://localhost:3001/static_upstream/",
+    clean: true,
   },
   resolve: {
     extensions: [".js", ".mjs", ".jsx", ".css", ".json", ".cjs"],
@@ -39,9 +39,7 @@ module.exports = {
       // no library defined here since this container will be treat as `script` in webpack ExternalModule.js
       name: "website1",
       filename: "container.js",
-      exposes: {
-        "./App": "./src/components/App"
-      },
+      // no expose config here, because some component will be bundled into exposed contarner, and loaderable component cannot find these module.
       remotes: {
         // website2 is the server downstream that is only for csr, in order to compile without error, fetch the website2 script from the 
         // server_downstream directory

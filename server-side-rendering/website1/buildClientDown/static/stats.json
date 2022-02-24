@@ -1,0 +1,435 @@
+{
+  "name": "client",
+  "hash": "156703389b3d2ab51de1",
+  "publicPath": "http://localhost:3001/static_downstream/",
+  "outputPath": "/Users/bixia/git_repository/module-federation-examples/server-side-rendering/website1/buildClientDown/static",
+  "assetsByChunkName": {
+    "main": [
+      "main.6b0d2d916085e2bdf837.js"
+    ],
+    "website1": [
+      "container.js"
+    ]
+  },
+  "assets": [
+    {
+      "type": "asset",
+      "name": "main.6b0d2d916085e2bdf837.js",
+      "size": 294725,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "6b0d2d916085e2bdf837",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "main.6b0d2d916085e2bdf837.js.map"
+        }
+      },
+      "chunkNames": [
+        "main"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        179
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "935.dcac5741e36bb02ee84a.js",
+      "size": 127246,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "dcac5741e36bb02ee84a",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "935.dcac5741e36bb02ee84a.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [
+        "vendors"
+      ],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        935
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "886.a1391e28c0b4b0a3dcb8.js",
+      "size": 53128,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "a1391e28c0b4b0a3dcb8",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "886.a1391e28c0b4b0a3dcb8.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [
+        "vendors"
+      ],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        409,
+        886
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "409.cb65a968c6e90a4bb184.js",
+      "size": 51607,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "cb65a968c6e90a4bb184",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "409.cb65a968c6e90a4bb184.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [
+        "vendors"
+      ],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        409
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "container.js",
+      "size": 31358,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "container.js.map"
+        }
+      },
+      "chunkNames": [
+        "website1"
+      ],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        893
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "911.b22e6075c8026213ced4.js",
+      "size": 24879,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "b22e6075c8026213ced4",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "911.b22e6075c8026213ced4.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [
+        "vendors"
+      ],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        911
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "976.5a7ce293feac6139e7ce.js",
+      "size": 9232,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "5a7ce293feac6139e7ce",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "976.5a7ce293feac6139e7ce.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        294,
+        976
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "294.e5a36a11ab9f8eaa4ccc.js",
+      "size": 7086,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "e5a36a11ab9f8eaa4ccc",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "294.e5a36a11ab9f8eaa4ccc.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        294
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "402.712ab03840ca087c4875.js",
+      "size": 6620,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "712ab03840ca087c4875",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "402.712ab03840ca087c4875.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        402,
+        963
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "963.c31f05053d08727e2964.js",
+      "size": 5155,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {
+        "immutable": true,
+        "chunkhash": "c31f05053d08727e2964",
+        "javascriptModule": false,
+        "related": {
+          "sourceMap": "963.c31f05053d08727e2964.js.map"
+        }
+      },
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "filteredRelated": 1,
+      "chunks": [
+        963
+      ],
+      "auxiliaryChunks": []
+    },
+    {
+      "type": "asset",
+      "name": "federation-stats.json",
+      "size": 129,
+      "emitted": false,
+      "comparedForEmit": false,
+      "cached": true,
+      "info": {},
+      "chunkNames": [],
+      "chunkIdHints": [],
+      "auxiliaryChunkNames": [],
+      "auxiliaryChunkIdHints": [],
+      "chunks": [],
+      "auxiliaryChunks": []
+    }
+  ],
+  "namedChunkGroups": {
+    "main": {
+      "name": "main",
+      "chunks": [
+        179
+      ],
+      "assets": [
+        {
+          "name": "main.6b0d2d916085e2bdf837.js"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 1,
+      "auxiliaryAssetsSize": null,
+      "children": {},
+      "childAssets": {}
+    },
+    "website1": {
+      "name": "website1",
+      "chunks": [
+        893
+      ],
+      "assets": [
+        {
+          "name": "container.js"
+        }
+      ],
+      "filteredAssets": 0,
+      "assetsSize": null,
+      "filteredAuxiliaryAssets": 1,
+      "auxiliaryAssetsSize": null,
+      "children": {},
+      "childAssets": {}
+    },
+    "website2-App": {
+      "name": "website2-App",
+      "chunks": [
+        588
+      ],
+      "assets": [],
+      "filteredAssets": 0,
+      "assetsSize": 0,
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {}
+    },
+    "storybook-Button": {
+      "name": "storybook-Button",
+      "chunks": [
+        109
+      ],
+      "assets": [],
+      "filteredAssets": 0,
+      "assetsSize": 0,
+      "filteredAuxiliaryAssets": 0,
+      "auxiliaryAssetsSize": 0,
+      "children": {},
+      "childAssets": {}
+    }
+  },
+  "generator": "loadable-components",
+  "chunks": [
+    {
+      "id": 179,
+      "files": [
+        "main.6b0d2d916085e2bdf837.js"
+      ]
+    },
+    {
+      "id": 893,
+      "files": [
+        "container.js"
+      ]
+    },
+    {
+      "id": 402,
+      "files": [
+        "402.712ab03840ca087c4875.js"
+      ]
+    },
+    {
+      "id": 917,
+      "files": []
+    },
+    {
+      "id": 976,
+      "files": [
+        "976.5a7ce293feac6139e7ce.js"
+      ]
+    },
+    {
+      "id": 963,
+      "files": [
+        "963.c31f05053d08727e2964.js"
+      ]
+    },
+    {
+      "id": 588,
+      "files": []
+    },
+    {
+      "id": 109,
+      "files": []
+    },
+    {
+      "id": 294,
+      "files": [
+        "294.e5a36a11ab9f8eaa4ccc.js"
+      ]
+    },
+    {
+      "id": 911,
+      "files": [
+        "911.b22e6075c8026213ced4.js"
+      ]
+    },
+    {
+      "id": 886,
+      "files": [
+        "886.a1391e28c0b4b0a3dcb8.js"
+      ]
+    },
+    {
+      "id": 935,
+      "files": [
+        "935.dcac5741e36bb02ee84a.js"
+      ]
+    },
+    {
+      "id": 409,
+      "files": [
+        "409.cb65a968c6e90a4bb184.js"
+      ]
+    },
+    {
+      "id": 580,
+      "files": []
+    }
+  ]
+}
