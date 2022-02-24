@@ -40,12 +40,12 @@ module.exports = {
       name: "website1",
       filename: "container.js",
       exposes: {
-        "./App": "./src/components/App"
+        "./App": "./src/components/FederationApp"
       },
       remotes: {
         // website2 is the server downstream that is only for csr, in order to compile without error, fetch the website2 script from the 
         // server_downstream directory
-        website2: "website2@http://localhost:3002/static/container.js",
+        website2: "website2@http://localhost:3002/static_downstream/container.js",
         storybook: "storybook@http://localhost:3003/static/container.js",
       },
       shared: ["react", "react-dom"],

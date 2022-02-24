@@ -1,27 +1,27 @@
 {
   "name": "client",
-  "hash": "efd8ffc81a72c417a84a",
+  "hash": "428227cf724d56ea7b02",
   "publicPath": "http://localhost:3001/static_upstream/",
   "outputPath": "/Users/bixia/git_repository/module-federation-examples/server-side-rendering/website1/buildClientUp/static",
   "assetsByChunkName": {
     "main": [
-      "main.f7bb0079144622b46256.js"
+      "main.ca11a40f114c430e7440.js"
     ]
   },
   "assets": [
     {
       "type": "asset",
-      "name": "main.f7bb0079144622b46256.js",
-      "size": 294568,
+      "name": "main.ca11a40f114c430e7440.js",
+      "size": 294579,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "chunkhash": "f7bb0079144622b46256",
+        "chunkhash": "ca11a40f114c430e7440",
         "javascriptModule": false,
         "related": {
-          "sourceMap": "main.f7bb0079144622b46256.js.map"
+          "sourceMap": "main.ca11a40f114c430e7440.js.map"
         }
       },
       "chunkNames": [
@@ -143,17 +143,17 @@
     },
     {
       "type": "asset",
-      "name": "27.bfefe351f70e74286399.js",
-      "size": 6547,
+      "name": "27.dda818197bf0007bdcdf.js",
+      "size": 6809,
       "emitted": false,
       "comparedForEmit": false,
       "cached": true,
       "info": {
         "immutable": true,
-        "chunkhash": "bfefe351f70e74286399",
+        "chunkhash": "dda818197bf0007bdcdf",
         "javascriptModule": false,
         "related": {
-          "sourceMap": "27.bfefe351f70e74286399.js.map"
+          "sourceMap": "27.dda818197bf0007bdcdf.js.map"
         }
       },
       "chunkNames": [],
@@ -190,7 +190,7 @@
       ],
       "assets": [
         {
-          "name": "main.f7bb0079144622b46256.js"
+          "name": "main.ca11a40f114c430e7440.js"
         }
       ],
       "filteredAssets": 0,
@@ -232,13 +232,13 @@
     {
       "id": 179,
       "files": [
-        "main.f7bb0079144622b46256.js"
+        "main.ca11a40f114c430e7440.js"
       ]
     },
     {
       "id": 27,
       "files": [
-        "27.bfefe351f70e74286399.js"
+        "27.dda818197bf0007bdcdf.js"
       ]
     },
     {

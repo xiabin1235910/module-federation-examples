@@ -10,6 +10,7 @@ export default () => (
   <div>
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="website1" element={<Home />} />
       <Route path="website2" element={<Website2App />} />
     </Routes>
 

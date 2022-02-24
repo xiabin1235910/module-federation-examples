@@ -42,6 +42,7 @@ module.exports = {
       filename: "container.js",
       remotes: {
         storybook: "storybook@http://localhost:3003/server_downstream/container.js",
+        website1: "website1@http://localhost:3001/server_downstream/container.js",
       },
       shared: {
         react: {

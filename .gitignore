@@ -116,3 +116,5 @@ buildServerNode
 
 buildServerUp
 buildServerDown
+buildClientUp
+buildClientDown
