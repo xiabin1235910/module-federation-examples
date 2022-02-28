@@ -4,7 +4,8 @@ import { URL } from "url";
 const mfAppNames = ["storybook"].join("|");
 const mfAppNamesRegex = RegExp(`(${mfAppNames})-.*`);
 const mfStatsUrlMap = {
-  storybook: "http://localhost:3003/static/federation-stats.json"
+  storybook: "http://localhost:3003/static/federation-stats.json",
+  website1: "http://localhost:3001/static_downstream/federation-stats.json",
 };
 const isMfComponent = (component) => mfAppNamesRegex.test(component);
 

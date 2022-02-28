@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
+import loadable from "@loadable/component";
+
 import Header from "./SomeComponent.js";
 import fetch from "node-fetch";
 import config from "../../build/common/server";
+
+import { Routes, Route, Link } from "react-router-dom";
+
+// eslint-disable-next-line
+const Website1App = loadable(() => import("website1/App"), { ssr: false });
 
 const BROWSER = typeof window !== 'undefined'
 
@@ -28,6 +35,18 @@ function useRequestInitialData(props, component, setFunctions) {
 }
 
 export default function App(props) {
+  return (
+    <>
+      <Routes>
+        <Route path='/' element={<Website2 {...props} />}></Route>
+        <Route path='website2' element={<Website2 {...props} />}></Route>
+        <Route path='website1' element={<Website1App />}></Route>
+      </Routes>
+    </>
+  )
+};
+
+function Website2(props) {
   const [fullUI, setFullUI] = useState(props.ssr);
   const [name, setName] = useState(props.name);
 
@@ -43,9 +62,12 @@ export default function App(props) {
       }
 
       this is the website2 and we will append footer component later...
+      <nav>
+        <Link to="/website1">website1</Link>
+      </nav>
     </div>
   )
-};
+}
 
 App.getInitialProps = async () => {
   const response = await fetch(`${config.BFF_ENTRYPOINT}/ad/1009264909240912081200209`, {

@@ -158,6 +158,8 @@ const server = [
 ];
 
 module.exports = {
-  client,
-  server,
+  loaders: {
+    client,
+    server,
+  }
 };

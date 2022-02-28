@@ -49,11 +49,12 @@ module.exports = {
       library: { type: "var", name: "website2" },
       filename: "container.js",
       exposes: {
-        "./App": "./src/components/App",
+        "./App": "./src/components/FederationApp",
       },
       remotes: {
         // no meaningful config here, but it's the mock for upstream calling
-        storybook: "storybook"
+        storybook: "storybook",
+        website1: "website1",
       },
       shared: {
         react: {

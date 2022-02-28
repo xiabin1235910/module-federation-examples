@@ -6,9 +6,11 @@ import path from "path";
 import { default as App } from "../src/components/App.js";
 import { getMfChunks, createScriptTag, createStyleTag } from "./mfFunctions.js";
 
+import { StaticRouter } from "react-router-dom/server";
+
 import Button from "storybook/Button";
 
-const statsFile = path.resolve("./buildClient/static/stats.json");
+const statsFile = path.resolve("./buildClientUp/static/stats.json");
 
 export default async (req, res, next) => {
   try {
@@ -18,7 +20,7 @@ export default async (req, res, next) => {
     const serverData = await App.getInitialProps() || {};
     serverData.props.ssr = true;
 
-    const jsx = extractor.collectChunks(createApp(App, serverData));
+    const jsx = extractor.collectChunks(createApp(App, serverData, req));
 
     // Render your application
     const html = renderToString(jsx);
@@ -57,6 +59,8 @@ export default async (req, res, next) => {
   }
 };
 
-const createApp = (App, data) => {
-  return <App {...data.props} />
+const createApp = (App, data, req) => {
+  return <StaticRouter location={req.url}>
+    <App {...data.props} />
+  </StaticRouter>
 };

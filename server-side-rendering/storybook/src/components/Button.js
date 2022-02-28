@@ -1,7 +1,7 @@
 // every component should have the mocked ssr prepared data, so that we can can the real feedback from story book UI.
 import React from "react";
 
-const Button = ({ name }) => (
+const Button = React.forwardRef(({ name }, ref) => (
     <div
         style={{
             width: '100%',
@@ -10,9 +10,10 @@ const Button = ({ name }) => (
             textAlign: "center",
             borderRadius: "5px",
         }}
+        ref={ref}
     >
         {name || 'post ad'}
     </div>
-)
+));
 
 export default Button;

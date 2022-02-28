@@ -8,17 +8,35 @@ const { serverPath, clientPath, publicPath } =
 // Production specific middleware for express
 module.exports = async (express, app, done) => {
   app.use(
-    "/static",
-    express.static(path.join(__dirname, "../buildClient/static"))
+    "/static_downstream",
+    (req, res, next) => {
+      res.set('Access-Control-Allow-Origin', '*');
+      next();
+    },
+    express.static(path.join(__dirname, "../buildClientDown/static"))
+  );
+  app.use(
+    "/static_upstream",
+    (req, res, next) => {
+      res.set('Access-Control-Allow-Origin', '*');
+      next();
+    },
+    express.static(path.join(__dirname, "../buildClientUp/static"))
+  );
+  app.use(
+    "/server_downstream",
+    express.static(path.join(__dirname, "../buildServerDown"))
+  );
+  app.use(
+    "/server_upstream",
+    express.static(path.join(__dirname, "../buildServerUp"))
   );
 
   const rederThunk = require("../../server-entry").default; // eslint-disable-line import/no-unresolved
-  const clientStats = JSON.parse(
-    fs.readFileSync(`${serverPath}/stats.json`, "utf8")
-  );
+
   try {
     // static path where files such as images will be served from
-    const serverRemder = rederThunk({ clientStats });
+    const serverRemder = rederThunk();
     app.get("/*", serverRemder);
   } catch (e) {
     throw new Error("Cant find webpack client stats file");
