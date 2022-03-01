@@ -13,7 +13,10 @@ const Button = React.forwardRef(({ name }, ref) => (
         ref={ref}
     >
         {name || 'post ad'}
+
+        <button>Click</button>
     </div>
+
 ));
 
 export default Button;

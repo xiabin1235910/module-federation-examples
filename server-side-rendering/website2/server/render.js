@@ -48,6 +48,7 @@ export default async (req, res, next) => {
        
         <body ${helmet.bodyAttributes.toString()}>
           <div id="root">${html}</div>
+          <div id="modal-root"></div>
           ${mfRequiredScripts.map(createScriptTag).join("")}
           ${scriptTags}
         </body>

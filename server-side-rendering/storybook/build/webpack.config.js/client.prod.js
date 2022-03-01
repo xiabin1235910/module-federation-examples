@@ -43,6 +43,7 @@ module.exports = {
       filename: "container.js",
       exposes: {
         "./Button": "./src/components/Button",
+        "./Modal": "./src/components/Modal.js"
       },
       shared: ["react", "react-dom"],
     }),

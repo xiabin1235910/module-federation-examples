@@ -9,6 +9,8 @@ import { Routes, Route, Link } from "react-router-dom";
 
 // eslint-disable-next-line
 const Website1App = loadable(() => import("website1/App"), { ssr: false });
+const Modal = loadable(() => import("storybook/Modal"), { ssr: false });
+const Button = loadable(() => import("storybook/Button"));
 
 const BROWSER = typeof window !== 'undefined'
 
@@ -49,8 +51,13 @@ export default function App(props) {
 function Website2(props) {
   const [fullUI, setFullUI] = useState(props.ssr);
   const [name, setName] = useState(props.name);
+  const [count, setCount] = useState(0);
 
   useRequestInitialData(props, App, { name: setName, fullUI: setFullUI })
+
+  function handleClicks(e) {
+    setCount(count + 1);
+  }
 
   return (
     <div>
@@ -61,7 +68,17 @@ function Website2(props) {
           <>loading......</>
       }
 
+
+
       this is the website2 and we will append footer component later...
+
+      <div onClick={handleClicks}>
+        the {count} clicks
+        <Modal>
+          <Button name="for portal test"></Button>
+        </Modal>
+      </div>
+
       <nav>
         <Link to="/website1">website1</Link>
       </nav>
