@@ -5,7 +5,7 @@ import { ChunkExtractor } from "@loadable/server";
 import path from "path";
 import { default as App } from "../src/components/App.js";
 
-const statsFile = path.resolve("./buildClient/static/stats.json");
+const statsFile = path.resolve("./buildClientUp/static/stats.json");
 
 export default async (req, res, next) => {
   try {

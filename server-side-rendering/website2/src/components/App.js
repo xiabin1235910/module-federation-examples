@@ -9,6 +9,7 @@ import { Routes, Route, Link } from "react-router-dom";
 
 // eslint-disable-next-line
 const Website1App = loadable(() => import("website1/App"), { ssr: false });
+// Modal does not support ssr currently, since Modal will use 'document' object in ssr
 const Modal = loadable(() => import("storybook/Modal"), { ssr: false });
 const Button = loadable(() => import("storybook/Button"));
 

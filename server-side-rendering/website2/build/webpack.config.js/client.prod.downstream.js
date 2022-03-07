@@ -46,7 +46,7 @@ module.exports = {
         "./App": "./src/components/FederationApp"
       },
       remotes: {
-        storybook: "storybook@http://localhost:3003/static/container.js",
+        storybook: "storybook@http://localhost:3003/static_downstream/container.js",
         website1: "website1@http://localhost:3001/static_downstream/container.js"
       },
       shared: ["react", "react-dom"],

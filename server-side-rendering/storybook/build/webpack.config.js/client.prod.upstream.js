@@ -19,10 +19,10 @@ module.exports = {
   mode: "production",
   devtool: "source-map",
   output: {
-    path: path.resolve(__dirname, "../../buildClient/static"),
+    path: path.resolve(__dirname, "../../buildClientUp/static"),
     filename: "[name].[chunkhash].js",
     chunkFilename: "[name].[chunkhash].js",
-    publicPath: `http://localhost:${process.env.PORT}/static/`,
+    publicPath: `http://localhost:${process.env.PORT}/static_upstream/`,
     clean: true
   },
   resolve: {
@@ -36,16 +36,5 @@ module.exports = {
   },
   plugins: [
     new LoadablePlugin({ filename: "stats.json", writeToDisk: true }),
-    new FederationStatsPlugin(),
-    new FederationModuleIdPlugin(),
-    new ModuleFederationPlugin({
-      name: "storybook",
-      filename: "container.js",
-      exposes: {
-        "./Button": "./src/components/Button",
-        "./Modal": "./src/components/Modal.js"
-      },
-      shared: ["react", "react-dom"],
-    }),
   ],
 }

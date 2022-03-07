@@ -42,8 +42,8 @@ module.exports = {
       library: { type: "var", name: "storybook" },
       filename: "container.js",
       exposes: {
-        "./Button": "./src/components/Button.js",
-        "./Modal": "./src/components/Modal.js"
+        "./Button": "./src/components/meta/Button.js",
+        "./Modal": "./src/components/meta/Modal.js"
       },
       shared: ['react', 'react-dom']
     }),

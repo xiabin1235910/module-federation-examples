@@ -4,7 +4,7 @@ import { URL } from "url";
 const mfAppNames = ["storybook"].join("|");
 const mfAppNamesRegex = RegExp(`(${mfAppNames})-.*`);
 const mfStatsUrlMap = {
-  storybook: "http://localhost:3003/static/federation-stats.json",
+  storybook: "http://localhost:3003/static_downstream/federation-stats.json",
   website1: "http://localhost:3001/static_downstream/federation-stats.json",
 };
 const isMfComponent = (component) => mfAppNamesRegex.test(component);
@@ -50,7 +50,7 @@ export const getMfChunks = async (extractor) => {
   mfRenderedComponents.forEach(([appName, component]) => {
     const remoteStats = mfChunks.find((remote) => remote.name === appName);
     const originalURL = new URL(mfStatsUrlMap[remoteStats.name]);
-    remoteStats.exposes[component].forEach((chunk) => {
+    remoteStats.exposes[component] && remoteStats.exposes[component].forEach((chunk) => {
       const url = `${originalURL.protocol}//${originalURL.host}/static/${chunk}`;
       url.endsWith(".css") ? stylesArr.push(url) : scriptsArr.push(url);
     });
