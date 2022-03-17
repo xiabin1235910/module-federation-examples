@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import loadable from "@loadable/component";
 
+import { useAppState } from './AppStateProvider';
+
 const Button = loadable(() => import("storybook/Button"), { ssr: true });
 
 const SomeComponent = ({ name }) => {
@@ -13,6 +15,8 @@ const SomeComponent = ({ name }) => {
     console.log(ref.current.style.width)
   }
 
+  const [state, dispatch] = useAppState();
+
   return (
     <>
       <div
@@ -24,6 +28,7 @@ const SomeComponent = ({ name }) => {
         }}
         onClick={() => {
           handleClick()
+          dispatch({ type: 'increment', value: 3 })
         }}
       >
         Header of {name} from website2. You can change this and reload localhost:3001 - the
@@ -39,7 +44,7 @@ const SomeComponent = ({ name }) => {
 
       <div>
         <input type="text" ref={textInput} />
-
+        <input type="text" value={state.count} />
       </div>
     </>
   )

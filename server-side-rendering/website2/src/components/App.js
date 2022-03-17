@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useReducer } from "react";
 import loadable from "@loadable/component";
 
 import Header from "./SomeComponent.js";
@@ -49,41 +49,65 @@ export default function App(props) {
   )
 };
 
+// test for reducers
+import { initState, appliedReducers } from '../reducers/combineReducers';
+import { AppStateProvider, useAppState } from './AppStateProvider';
+
 function Website2(props) {
   const [fullUI, setFullUI] = useState(props.ssr);
   const [name, setName] = useState(props.name);
   const [count, setCount] = useState(0);
+  const [clockCount, setClockCount] = useState(0);
+  const [buttonName, setButtonName] = useState('for portal test phase II');
+  // const [state, dispatch] = useReducer(combineReducers, initState);
 
   useRequestInitialData(props, App, { name: setName, fullUI: setFullUI })
 
-  function handleClicks(e) {
-    setCount(count + 1);
-  }
+  useEffect(() => {
+    const id = setInterval(() => {
+      setClockCount((prev) => prev + 1)
+    }, 1000);
+
+    return () => clearInterval(id)
+  }, [])
+
+  const newModal = useMemo(() => {
+    return (
+      <Modal>
+        <Button name={buttonName}></Button>
+      </Modal>
+    )
+  }, [buttonName])
 
   return (
-    <div>
-      {
-        fullUI ?
-          <Header name={name} />
-          :
-          <>loading......</>
-      }
+    <AppStateProvider initState={initState} reducers={appliedReducers}>
+      <div>
+        {
+          fullUI ?
+            <Header name={name} />
+            :
+            <>loading......</>
+        }
 
 
 
-      this is the website2 and we will append footer component later...
+        this is the website2 and we will append footer component later...
 
-      <div onClick={handleClicks}>
-        the {count} clicks
-        <Modal>
-          <Button name="for portal test"></Button>
-        </Modal>
+        <div onClick={() => dispatch({ type: 'increment' })}>
+          {/* the {state.count} clicks */}
+          the clockCounts is {clockCount}
+          <Modal>
+            <Button name="for portal test"></Button>
+          </Modal>
+
+          {newModal}
+        </div>
+
+        <nav>
+          <Link to="/website1">website1</Link>
+        </nav>
       </div>
-
-      <nav>
-        <Link to="/website1">website1</Link>
-      </nav>
-    </div>
+    </AppStateProvider>
   )
 }
 
