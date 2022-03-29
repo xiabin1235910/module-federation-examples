@@ -1,4 +1,5 @@
 import React, { useContext, useReducer } from 'react'
+import PropTypes from 'prop-types';
 
 const ReduxContext = React.createContext();
 
@@ -10,6 +11,11 @@ export function AppStateProvider({ initState, reducers, children }) {
             {children}
         </ReduxContext.Provider>
     )
+}
+
+AppStateProvider.propTypes = {
+    initState: PropTypes.object,
+    reducers: PropTypes.func,
 }
 
 export function useAppState() {
